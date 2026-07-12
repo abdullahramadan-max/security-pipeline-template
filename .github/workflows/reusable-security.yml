@@ -4,15 +4,17 @@ on:
   workflow_call:
     inputs:
       language:
-        description: Programming language
+        description: "Programming language"
         required: true
         type: string
 
       node-version:
-        description: Node.js Version
+        description: "Node.js version"
         required: false
         default: "22"
         type: string
+
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -27,3 +29,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Show Repository Files
+        run: ls -la
+
+      - name: Display Inputs
+        run: |
+          echo "Language: ${{ inputs.language }}"
+          echo "Node Version: ${{ inputs.node-version }}"
