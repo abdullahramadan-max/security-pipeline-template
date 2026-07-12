@@ -1,0 +1,3 @@
+name: Enterprise Security Platform
+on:
+  workflow_call:
