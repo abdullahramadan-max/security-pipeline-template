@@ -14,12 +14,8 @@ on:
         default: "22"
         type: string
 
-  workflow_dispatch:
-
 permissions:
   contents: read
-  security-events: write
-  actions: read
 
 jobs:
   security-scan:
@@ -30,10 +26,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Show Repository Files
-        run: ls -la
+      - name: Setup Node.js
+        if: inputs.language == 'node'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs['node-version'] }}
 
-      - name: Display Inputs
+      - name: Display Information
         run: |
+          echo "Repository: ${{ github.repository }}"
           echo "Language: ${{ inputs.language }}"
-          echo "Node Version: ${{ inputs.node-version }}"
+          echo "Node Version: ${{ inputs['node-version'] }}"
+
+      - name: List Repository Files
+        run: ls -la
