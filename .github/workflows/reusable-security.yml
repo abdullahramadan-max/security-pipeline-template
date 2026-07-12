@@ -13,3 +13,8 @@ on:
         required: false
         default: "22"
         type: string
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
