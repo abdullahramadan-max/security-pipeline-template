@@ -1,4 +1,5 @@
 name: Enterprise Security Platform
+
 on:
   workflow_call:
     inputs:
@@ -8,5 +9,7 @@ on:
         type: string
 
       node-version:
-        description: Node.js version
+        description: Node.js Version
         required: false
+        default: "22"
+        type: string
