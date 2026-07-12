@@ -1,3 +1,12 @@
 name: Enterprise Security Platform
 on:
   workflow_call:
+    inputs:
+      language:
+        description: Programming language
+        required: true
+        type: string
+
+      node-version:
+        description: Node.js version
+        required: false
