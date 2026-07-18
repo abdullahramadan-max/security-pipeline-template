@@ -23,20 +23,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the source code
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        if: inputs.language == 'node'
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ inputs['node-version'] }}
-
+      # Display basic workflow information
       - name: Display Information
         run: |
           echo "Repository: ${{ github.repository }}"
           echo "Language: ${{ inputs.language }}"
           echo "Node Version: ${{ inputs['node-version'] }}"
 
+      # Display repository contents for troubleshooting
       - name: List Repository Files
         run: ls -la
+
+      # Install the requested Node.js version
+      - name: Setup Node.js
+        if: inputs.language == 'node'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs['node-version'] }}
+
+      # Install project dependencies
+      - name: Install Dependencies
+        if: inputs.language == 'node'
+        run: npm ci
